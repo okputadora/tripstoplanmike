@@ -84,7 +84,7 @@ $("#loader").append(`<div class="preloader-wrapper big active margin30">
 
 var loadingMessages = ["Your results are being calculated...",
   "finding events that match your interests...",
-  "optimzing the best vacation"]
+  "optimizing the best vacation"]
 index = 0
 $("#loadingMessages")
 setInterval(function(){
