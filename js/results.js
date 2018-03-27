@@ -31,7 +31,7 @@ function initMap() {
             displayCityDetails(marker.city)
             clearInterval(zoomin)
           }
-        }, 200)
+        }, 200);
 
       })
     })
@@ -69,6 +69,8 @@ function displayCityDetails(currentCity){
   // get the data for this vacation
   console.log(localStorage.vacations)
 }
+
+
 $("#loader").append(`<div class="preloader-wrapper big active margin30">
           <div class="spinner-layer spinner-blue-only">
             <div class="circle-clipper left">
@@ -92,4 +94,33 @@ setInterval(function(){
   index++
   // check if the results are in
 
-}, 3000)
+}, 3000);
+
+//example of part of the working code that has the info window
+
+// function initMap() {
+//   var Mandeville = { lat: 18.0313, lng: -77.5046 };
+//   var map = new google.maps.Map(document.getElementById('map'), {
+//       zoom: 4,
+//       center: Mandeville
+//   });
+//   var marker = new google.maps.Marker({
+//       position: Mandeville,
+//       map: map
+//       //Add icons here for the different results
+      
+//   });
+//   //add info window here so that users are able to view info about the results
+//   var infoWindow = new google.maps.InfoWindow({
+//       content: "<h1> Mandeville, JA</h1>"
+//   });
+//   //Listener for InfoWindow
+//   marker.addListener("click", function(){
+//       infoWindow.open(map, marker);
+//   })
+
+
+
+
+
+
