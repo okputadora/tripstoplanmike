@@ -39,7 +39,7 @@ var api_key = 'qmFPcpp4ZnChQdF5';
           // to get the recursive functions to terminate we've been removing
           // items from these lists...now we need to reset them because we're
           // creating a new vacation object
-          dateRanges = JSON.parse(localStorage.dateRanges)
+          dateRanges = JSON.parse(localStorage.eventfulRanges)
           interests = JSON.parse(localStorage.interests)
           appendCity()
         }

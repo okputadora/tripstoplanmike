@@ -32,11 +32,16 @@ function initMap() {
             clearInterval(zoomin)
           }
         }, 200);
-
+      })
+      var infoWindow = new google.maps.InfoWindow({
+        content: "<h1 class='cityName'>"+marker.city+"</h1>"
+        //Listener for InfoWindow
+      })
+      marker.addListener("click", function(){
+        infoWindow.open(map, marker);
       })
     })
   })
-
 }
 
 function getCoords(displayCities, callback){
@@ -96,7 +101,7 @@ setInterval(function(){
 
 }, 3000);
 
-//example of part of the working code that has the info window
+// example of part of the working code that has the info window
 
 // function initMap() {
 //   var Mandeville = { lat: 18.0313, lng: -77.5046 };
@@ -108,7 +113,7 @@ setInterval(function(){
 //       position: Mandeville,
 //       map: map
 //       //Add icons here for the different results
-      
+//
 //   });
 //   //add info window here so that users are able to view info about the results
 //   var infoWindow = new google.maps.InfoWindow({
@@ -118,9 +123,3 @@ setInterval(function(){
 //   marker.addListener("click", function(){
 //       infoWindow.open(map, marker);
 //   })
-
-
-
-
-
-
