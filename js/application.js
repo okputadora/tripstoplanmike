@@ -69,11 +69,11 @@ $(document).ready(function () {
                 // use the original moment object to calculate the end date
                 // and format it at the same time
                 var endDate = startMoment.add(vacaLength, "day")
-                var endDate = endDate.format("YYYYMMDD")
+                var eventEndDate = endDate.format("YYYYMMDD")
                 var hotelEndDate = endDate.format("YYYY-MM-DD")
                 var eventfulRange = {
                     startDate: startDate,
-                    endDate: endDate,
+                    endDate: eventEndDate,
                 };
                 var hotelRange = {
                   startDate: departureDate,
