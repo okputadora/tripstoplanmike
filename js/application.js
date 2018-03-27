@@ -53,6 +53,7 @@ $(document).ready(function () {
         var vacaLength = parseInt($("#vacaLength").val().trim());
         var eventfulRanges = [];
         var departureDates = [];
+        var hotelRanges = [];
         $(".date").each(function () {
           // convert date for eventful api format
           // and different format for amadeus api
@@ -68,18 +69,25 @@ $(document).ready(function () {
                 // use the original moment object to calculate the end date
                 // and format it at the same time
                 var endDate = startMoment.add(vacaLength, "day")
-                var endDate = endDate.format("YYYYMMDD")
+                var eventEndDate = endDate.format("YYYYMMDD")
+                var hotelEndDate = endDate.format("YYYY-MM-DD")
                 var eventfulRange = {
                     startDate: startDate,
-                    endDate: endDate,
+                    endDate: eventEndDate,
                 };
+                var hotelRange = {
+                  startDate: departureDate,
+                  endDate: hotelEndDate,
+                }
+                hotelRanges.push(hotelRange)
                 eventfulRanges.push(eventfulRange)
                 departureDates.push(departureDate)
             }
 
         });
         // add to localstorage
-        localStorage.setItem("dateRanges", JSON.stringify(eventfulRanges))
+        localStorage.setItem("eventfulRanges", JSON.stringify(eventfulRanges))
+        localStorage.setItem("hotelRanges", JSON.stringify(hotelRanges))
         localStorage.setItem("departureDates", JSON.stringify(departureDates))
         localStorage.setItem("duration", JSON.stringify(vacaLength))
         // LETS CONVERT THESE
