@@ -30,6 +30,7 @@ $(window).on("load", function () {
       // in this case our callback function will be to actually look up the flights
       airportCodeLookUp(cities, function(){
         console.log(airportCodes)
+        localStorage.setItem("airportCodes", JSON.stringify(airportCodes))
         getFlights()
       })
     }, 0)
