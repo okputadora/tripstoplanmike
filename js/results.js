@@ -36,14 +36,14 @@ vacations = JSON.parse(vacations)
              }
            }, 200);
          })
-       })
-       // unfortunately this function needs to be in here so it can access the
-       // map instance that is local to the init function
-       $("#map").on("click", ".datewindow", function(){
-         // clear the city marker
-         displayEvents(map, this)
+         // map instance that is local to the init function
+         $("#map").on("click", ".datewindow", function(){
+           cityMarker.setMap(null)
+           // clear the city marker
+           displayEvents(map, this)
 
-        })
+         })
+       })
      })
    }
 
