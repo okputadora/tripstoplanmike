@@ -1,6 +1,7 @@
 var displayCities = JSON.parse(localStorage.cities)
 var coordsList = []
-
+var vacations = localStorage.vacations
+vacations = JSON.parse(vacations)
 
 // playing with changing data to see what happens
 
@@ -12,8 +13,6 @@ var coordsList = []
          center: {lat: 38.850033, lng: -97.6500523}
        });
        coordsList.forEach(function(coords, i){
-         console.log("new marker")
-         console.log(coords)
          var cities = JSON.parse(localStorage.cities)
          city = cities[i]
          var marker = new google.maps.Marker({
@@ -24,46 +23,48 @@ var coordsList = []
          });
          // set up an event listner for each pin we drop.
          // if the user clicks that pin zoom in
-         console.log(marker)
          marker.addListener('click', function(){
            var zoomLevel = 6
            var zoomin = setInterval(function(){
              map.setZoom(zoomLevel);
              map.setCenter(marker.getPosition())
              zoomLevel += 1
-             if (zoomLevel >  12){
-               displayCityDetails(marker.city)
+             if (zoomLevel >  11){
+               displayDateWindows(marker, map)
                clearInterval(zoomin)
              }
            }, 200);
          })
-
-         var vacations = localStorage.vacations
-         vacations = JSON.parse(vacations)
-         var dateWindows;
-         vacations.forEach(function(vacation){
-           if (vacation.city.cityName === marker.city){
-             dateWindows = vacation.dateWindows
-             return
+       })
+       // unfortunately this function needs to be in here so it can access the
+       // map instance that is local to the init function
+       $("#map").on("click", ".datewindow", function(){
+         // remove current pin and window
+         /// grab the interest list that matches this datewindow and city
+         var index = this.id.slice(0, this.id.indexOf("-"))
+         var startDate = this.id.slice(this.id.indexOf("-")+ 1)
+         var windows = vacations[index].dateWindows
+         var interests;
+         windows.forEach(function(window){
+           if (window.startDate === startDate){
+             interests = window.interests
            }
          })
-         var displayDateWindows = dateWindows.map(function(date){
-           var formattedStartDate = moment(date.startDate, "YYYYMMDD").format("MM-DD-YYYY")
-           var formattedEndDate = moment(date.endDate, "YYYYMMDD").format("MM-DD-YYYY")
-           return ("<button class='btn waves-effect waves-light datewindow' id='"+marker.city+"-"+date.startDate+"'>" + formattedStartDate + " to " + formattedEndDate + "</button>")
-         })
-         var buttons = displayDateWindows.join("")
-         console.log("BUTTONS")
-         console.log(buttons)
-         console.log(dateWindows)
-         var infoWindow = new google.maps.InfoWindow({
-           content: "<div class='center'><h1 class='cityName'>"+marker.city+"</h1>"+buttons+"<div>"
-           //Listener for InfoWindow
-         })
-         marker.addListener("click", function(){
-           infoWindow.open(map, marker);
-         })
-       })
+         var events;
+          interests.forEach(function(interest){
+            events = interest.events
+          })
+          events.forEach(function(event){
+            var lat = parseFloat(event.lat)
+            var lng = parseFloat(event.lon)
+            var coords = {lat: lat, lng: lng}
+            var eventMarker = new google.maps.Marker({
+              position: coords,
+              map: map,
+              title: event.title
+            })
+          })
+        })
      })
    }
 
@@ -92,35 +93,32 @@ var coordsList = []
 
    }
 
-   function displayCityDetails(currentCity){
-     // console.log(currentCity)
-     // get the data for this vacation
+   function displayDateWindows(marker){
+     var dateWindows;
+     var vacaIndex;
+     vacations.forEach(function(vacation, index){
+       if (vacation.city.cityName === marker.city){
+         dateWindows = vacation.dateWindows
+         vacaIndex = index
+         return
+       }
+     })
+     var displayDateWindows = dateWindows.map(function(date){
+       var formattedStartDate = moment(date.startDate, "YYYYMMDD").format("dddd, MMMM Do, YYYY")
+       var formattedEndDate = moment(date.endDate, "YYYYMMDD").format("dddd, MMMM Do YYYY")
+       return ("<button class='btn waves-effect waves-light datewindow' id='"+vacaIndex+
+       "-"+date.startDate+"'>" + formattedStartDate + " to " + formattedEndDate + "</button></br>")
+     })
+     var buttons = displayDateWindows.join("")
+     var infoWindow = new google.maps.InfoWindow({
+       content: "<div class='center'><h3 class='cityName'>"+marker.city+"</h3>"+
+        "<p class='vacaDesc'>You have "+displayDateWindows.length+" possible vacations in "+marker.city+
+        ". Click the date window to see some events you might be interested in.</br>"+
+        buttons+"<div>"
+       //Listener for InfoWindow
+     })
+     // How come we could access map here but not in our dateWindow.onClick function??????
+     infoWindow.open(map, marker);
    }
 
-   $(document).on("click", ".datewindow", function(){
-     console.log(this.id)
-     /// grab the interest list that matches this datewindow and city
-   })
-
-// example of part of the working code that has the info window
-
-// function initMap() {
-//   var Mandeville = { lat: 18.0313, lng: -77.5046 };
-//   var map = new google.maps.Map(document.getElementById('map'), {
-//       zoom: 4,
-//       center: Mandeville
-//   });
-//   var marker = new google.maps.Marker({
-//       position: Mandeville,
-//       map: map
-//       //Add icons here for the different results
-//
-//   });
-//   //add info window here so that users are able to view info about the results
-//   var infoWindow = new google.maps.InfoWindow({
-//       content: "<h1> Mandeville, JA</h1>"
-//   });
-//   //Listener for InfoWindow
-//   marker.addListener("click", function(){
-//       infoWindow.open(map, marker);
-//   })
+    // append each event to the map

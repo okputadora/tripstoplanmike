@@ -38,6 +38,15 @@
   top: 50%;
   left: 200px;
 }
+
+.datewindow{
+  margin: 10px;
+  text-transform: capitalize;
+}
+
+.vacaDesc{
+  font-size: 15px;
+}
 #main-container{
   height: 80vh;
   width: 100vw;
