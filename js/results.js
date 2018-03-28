@@ -63,6 +63,10 @@ vacations = JSON.parse(vacations)
               map: map,
               title: event.title
             })
+            eventMarker.addListener("click", function(){
+              // load information into info window
+              displayEventInfo(eventMarker, event)
+            })
           })
         })
      })
@@ -120,5 +124,11 @@ vacations = JSON.parse(vacations)
      // How come we could access map here but not in our dateWindow.onClick function??????
      infoWindow.open(map, marker);
    }
+   function displayEventInfo(marker, event){
 
+     var infoWindow = new google.maps.InfoWindow({
+       content: "<h3>"+event.title+"</h3>"
+     })
+     infoWindow.open(map, marker)
+   }
     // append each event to the map
