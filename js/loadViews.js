@@ -46,7 +46,7 @@ $(window).on("load", function(){
     $("#interestDiv").css("margin-top", "-50px")
     setTimeout(function(){
       $("#main-container").empty()
-      window.location='results.html'
+      window.location='loading.html'
     }, 500)
     // go to the results page
   })

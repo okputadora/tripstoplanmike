@@ -2,6 +2,18 @@
 var cors_api_url = 'https://cors-anywhere.herokuapp.com/';
 var api_key = 'qmFPcpp4ZnChQdF5';
 
+var loadingMessages = ["Your results are being calculated...",
+  "finding events that match your interests...",
+  "optimizing the best vacation"]
+index = 0
+$("#loadingMessages")
+setInterval(function(){
+  $("#loadingMessages").html(loadingMessages[index])
+  index++
+  // check if the results are in
+
+}, 3000);
+
   console.log("connected")
     // get the data from local storage
     var cities = JSON.parse(localStorage.cities)
@@ -45,9 +57,10 @@ var api_key = 'qmFPcpp4ZnChQdF5';
         }
         else {
           console.log("===============END RESULT==============")
-          console.log(vacations)
+          localStorage.setItem("vacations", JSON.stringify(vacations))
           // remove loading window
           $("#loader").remove()
+          window.location = "results.html"
         }
       })
     }

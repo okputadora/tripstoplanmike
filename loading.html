@@ -46,7 +46,20 @@
     </nav>
     <div id="main-container" class="align-center">
       <!-- <div id="vacationSummary">We've picked some vacations for you</div> -->
-      <div id="map"></div>
+      <div id="loader">
+        <div class="preloader-wrapper big active margin30">
+          <div class="spinner-layer spinner-blue-only">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div><div class="gap-patch">
+              <div class="circle"></div>
+            </div><div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+        </div>
+        <div id="loadingMessages"></div>
+      </div>
     </div>
     <!-- FOOTER -->
     <footer class="page-footer orange">
@@ -101,12 +114,7 @@
             </div>
         </div>
     </footer>
-    <!-- MOMENT -->
-    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-    <script src="js/results.js"></script>
+    <script src="js/eventful.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYUN28qqTKuwxF_I12PmuRvAQ6MqbmUDk&callback=initMap"></script>
-
-
 </body>
-
 </html>
