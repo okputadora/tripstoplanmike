@@ -29,7 +29,7 @@
 }
 
 #map {
-    height: 85vh;
+    height: 80vh;
     width: 100%;
 }
 
@@ -38,18 +38,30 @@
   top: 50%;
   left: 200px;
 }
-
+.dateWindowsContainer{
+  width: 600px;
+  position: fixed;
+  top: 100px;
+  left: 50px;
+  z-index:1000;
+  background: #f9f9f9;
+  opacity: .9;
+  border-radius: 4px;
+}
 .datewindow{
-  margin: 10px;
+  margin: 0 0 10px 10px;
   text-transform: capitalize;
 }
 
 .vacaDesc{
+  width: 400px;
+  padding: 7px;
+  margin: 0;
   font-size: 15px;
 }
 #main-container{
   height: 80vh;
-  width: 100vw;
+  width: 100%;
 }
 #loader {
   display: flex;
@@ -68,7 +80,8 @@
 
 }
 .cityName{
-  padding: 20px;
+  padding: 10px;
+  margin: 0;
 }
 .custom-input-container{
   background-color: #f9f9f9;
