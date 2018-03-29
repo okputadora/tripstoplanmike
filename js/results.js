@@ -113,6 +113,7 @@ vacations = JSON.parse(vacations)
 
 
   function displayEvents(map, pin){
+    var events = []
      // clear the events
      for (var i = 0; i < eventMarkers.length; i++) {
        eventMarkers[i].setMap(null);
@@ -127,9 +128,10 @@ vacations = JSON.parse(vacations)
           interests = dateWindow.interests
         }
       })
-      var events;
       interests.forEach(function(interest){
-        events = interest.events
+        interest.events.forEach(function(ev){
+          events.push(ev)
+        })
       })
 
       events.forEach(function(currentEvent){
