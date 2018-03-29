@@ -35,6 +35,7 @@ vacations = JSON.parse(vacations)
              map.setZoom(zoomLevel);
              zoomLevel += 1
              if (zoomLevel >  11){
+               cityMarker.setMap(null)
                displayDateWindows(cityMarker, map)
                clearInterval(zoomin)
              }
@@ -43,7 +44,6 @@ vacations = JSON.parse(vacations)
          // map instance that is local to the init function
          $(document).on("click", ".datewindow", function(){
            // clear the city marker
-           cityMarker.setMap(null)
            displayEvents(map, this)
 
          })
@@ -164,10 +164,14 @@ vacations = JSON.parse(vacations)
       globalInfoWindow.close()
      }
      console.log("MARKER POSITION")
-     var lat = marker.getPosition().lat()
-     var lat = lat + 0.1
-     var lng = marker.getPosition().lng()
-     map.panTo({lat: lat, lng: lng})
+     console.log(map.zoom)
+     if (map.zoom === 11){
+       console.log("PANNING")
+       var lat = marker.getPosition().lat()
+       var lat = lat + 0.1
+       var lng = marker.getPosition().lng()
+       map.panTo({lat: lat, lng: lng})
+     }
      if (currentEvent.description !== null){
        var description = currentEvent.description
      }
@@ -175,6 +179,7 @@ vacations = JSON.parse(vacations)
      var startTime = moment(currentEvent.startTime, "YYYY-MM-DD HH:mm:ss").format("dddd, MMMM Do YYYY")
      var infoWindow = new google.maps.InfoWindow({
        content: "<div><h4>"+currentEvent.title+"</h4><p>"+startTime+
+       "<p><a href='"+currentEvent.venueUrl+"'>"+currentEvent.venue+"</a></p>"+"<p>"+currentEvent.venueAddress+"</p>"+
        "</p><p class='truncate toggleText'>"+description+"</p></div>"
      })
      globalInfoWindow = infoWindow;
