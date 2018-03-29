@@ -1,6 +1,7 @@
 //api key xmnsRKbacpmsh6ZB83cvLNMQc4LTp1Znb3fjsngAa5M9Bt400S
 var cors_api_url = 'https://cors-anywhere.herokuapp.com/';
 var api_key = 'qmFPcpp4ZnChQdF5';
+var vacations = []
 
 var loadingMessages = ["Your results are being calculated...",
   "finding events that match your interests...", "haggling with the airlines...",
@@ -20,9 +21,10 @@ setInterval(function(){
     var dateRanges = JSON.parse(localStorage.eventfulRanges)
     var interests = JSON.parse(localStorage.interests)
     // build a request URL from the data
-    var vacations = []
     appendCity()
     function appendCity(){
+      console.log("vacations")
+      console.log(vacations)
       // remove one city from the list
       city = cities.shift()
       // create a new vacation object and add the city to it
@@ -35,6 +37,8 @@ setInterval(function(){
       // its position in the array of date windows
       var dateIndex = 0
       appendDates(vacation, dateIndex, function(){
+        console.log("vacations")
+        console.log(vacations)
         // add the vacation to the list of possible vacations
         vacations.push(vacation)
         // if there are more cities repeat the process

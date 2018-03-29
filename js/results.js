@@ -2,8 +2,7 @@ var displayCities = JSON.parse(localStorage.cities)
 var coordsList = []
 var eventMarkers = []
 var globalInfoWindow;
-var vacations = localStorage.vacations
-vacations = JSON.parse(vacations)
+// vacations = JSON.parse(vacations)
 
 // playing with changing data to see what happens
 
@@ -93,6 +92,7 @@ vacations = JSON.parse(vacations)
    }
 
   function displayDateWindows(marker, map){
+    var vacations = JSON.parse(localStorage.vacations)
     var dateWindows;
     var vacaIndex;
     vacations.forEach(function(vacation, index){
