@@ -72,4 +72,22 @@ $(window).on("load", function(){
       }, 600)
     }, 300)
   }
+
+  function loadPrevPrompt(currentPrompt, prevPrompt){
+    // fade out the homeDiv
+    currentPrompt.css("opacity", "0")
+    currentPrompt.css("margin-top", "-50px")
+    // wait until it fades out
+    setTimeout(function(){
+      // then remove it
+      currentPrompt.addClass("custom-hidden")
+      prevPrompt.removeClass("custom-hidden")
+      // add the next form
+      // fade in the new window
+      setTimeout(function(){
+        prevPrompt.css("opacity", "1")
+        prevPrompt.css("margin-top", "0px")
+      }, 600)
+    }, 300)
+  }
 })

@@ -2,215 +2,226 @@
 <html lang="en">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
-    <title>Starter Template - Materialize</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+  <title>Starter Template - Materialize</title>
 
-    <!-- CSS  -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
-    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
 
 
 </head>
 
 <body>
-    <!-- NAV BAR -->
-    <nav class="light-blue lighten-1" role="navigation">
-      <div class="nav-wrapper container"><a  id="logo-container" href="index.html" class="brand-logo"><img src="ttplogo.png" height="100px" πclass="brand-logo"></a>
+  <!-- NAV BAR -->
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="index.html" class="brand-logo">
+        <img src="ttplogo.png" height="100px" πclass="brand-logo">
+      </a>
 
-        <ul class="right hide-on-med-and-down">
-          <li><a href="About.html">About</a></li>
-        </ul>
+      <ul class="right hide-on-med-and-down">
+        <li>
+          <a href="About.html">About</a>
+        </li>
+      </ul>
 
-        <!-- <ul id="nav-mobile" class="side-nav">
+      <!-- <ul id="nav-mobile" class="side-nav">
           <li><a href="#">Navbar Link</a></li>
         </ul> -->
-        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-      </div>
-    </nav>
-    <!-- Title -->
-    <main>
-      <div class="container center-align">
-          <h1 id="letsGetStarted">Let's get started!</h1>
-      </div>
-      <!-- Main Container -->
-      <div id="view1" class="container">
-          <!-- Everything is in one Row -->
-          <div id="main-container"class="row center-align">
-            <div id="homeDiv" class="col s12 m6 offset-m3 z-depth-5 custom-input-container">
-              <h4 class="orange-text">where do you live?</h4>
-              <div class="row">
-                <form class='hometown'>
-                  <div class="input-field">
-                    <input id="home" type="text" autocomplete="address-level2" name="hometown" placeholder="home town" class="center cityComplete validate">
-                    <label id="homeresp"></label>
-                  </div>
-                </form>
-                <button id="homeBtn" class="btn disabled waves-effect waves-light custom-button" type="submit" name="action">continue</button>
+      <a href="#" data-activates="nav-mobile" class="button-collapse">
+        <i class="material-icons">menu</i>
+      </a>
+    </div>
+  </nav>
+  <!-- Title -->
+  <main>
+    <div class="container center-align">
+      <h1 id="letsGetStarted">Let's get started!</h1>
+    </div>
+    <!-- Main Container -->
+    <div id="view1" class="container">
+      <!-- Everything is in one Row -->
+      <div id="main-container" class="row center-align">
+        <div id="homeDiv" class="col s12 m6 offset-m3 z-depth-5 custom-input-container">
+          <h4 class="orange-text">where do you live?</h4>
+          <div class="row">
+            <form class='hometown'>
+              <div class="input-field">
+                <input id="home" type="text" autocomplete="address-level2" name="hometown" placeholder="home town" class="center cityComplete validate">
+                <label id="homeresp"></label>
               </div>
-            </div>
-            <div id="cityDiv" class="col s12 m6 offset-m3 z-depth-5 custom-input-container custom-hidden">
-              <h4 class="orange-text">where do you want to go?</h4>
-              <div class="row">
-                <form id="cityForm">
-                  <div class="row ">
-                    <div class="input-field">
-                      <input placeholder="Philadelphia" id="city1" type="text" class="center validate city cityComplete custom-width-85" />
-                      <label for="city1"></label>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="input-field ">
-                      <input placeholder="Paris" id="city2" type="text" class="center validate city cityComplete custom-width-85" />
-                      <label for="city2"></label>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="input-field ">
-                      <input placeholder="Phoenix" id="city3" type="text" class="center validate city cityComplete custom-width-85" />
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="input-field ">
-                      <input placeholder="etc.." id="city4" type="text" class="center validate city cityComplete custom-width-85" />
-                      <label for="city4"></label>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="input-field ">
-                      <input placeholder="..." id="city5" type="text" class="center validate city cityComplete custom-width-85" />
-                      <label for="city5"></label>
-                    </div>
-                  </div>
-                </form>
-                <button id="cityBtn" class="btn waves-effect waves-light custom-button" type="submit" name="action">continue</button>
-                <div id="cityResults"></div>
-              </div>
-            </div>
-            <!-- At this time, not all pickadate.js options are working with our implementation -->
-            <div id="dateDiv" class="col s12 m6 offset-m3 z-depth-5 custom-input-container custom-hidden">
-              <h4 class="orange-text">when do you want to go?</h4>
-              <input placeholder="Length of Vacation" id="vacaLength" type="text" class="center validate custom-width-85" />
-                <div class="input-field custom-width-85">
-                  <input id="date1" type="text" name="date1" class="center datepicker date" />
-                  <label for="date1">Date1</label>
-                </div>
-                <div class="input-field custom-width-85">
-                  <input id="date2" type="text" name="date2" class="center datepicker date">
-                    <label for="date2">Date2</label>
-                </div>
-                <div class="input-field custom-width-85">
-                  <input id="date3" type="text" name="date3" class="center datepicker date">
-                  <label for="date3">Date3</label>
-                </div>
-                <div class="input-field custom-width-85">
-                  <input id="date4" type="text" name="date4" class="center datepicker date">
-                  <label for="date4">Date4</label>
-                </div>
-                <div class="input-field custom-width-85">
-                  <input id="date5" type="text" name="date5" class="center datepicker date">
-                  <label for="date5">Date5</label>
-                </div>
-                <button id="dateBtn" class="btn waves-effect waves-light custom-button" type="submit" name="action">continue</button>
-            </div>
-            <div id="interestDiv" class="col s12 m6 offset-m3 z-depth-5 custom-input-container custom-hidden">
-              <h4 class="orange-text">Interests</h4>
-              <div class="row">
-                <ul class="collapsible z-depth-0">
-                  <li>
-                    <div class="collapsible-header">
-                      <i class="material-icons">music_note</i>
-                      Music
-                    </div>
-                    <div class="collapsible-body">
-                      <p>
-                        <input placeholder="Artist/Musical Show" id="interest1" type="text" class="validate interest music">
-                        <label for="interest1"></label>
-                      </p>
-                      <p>
-                        <input placeholder="Artist/Musical Show" id="interest2" type="text" class="validate interest music">
-                        <label for="interest2"></label>
-                      </p>
-                      <p>
-                        <input placeholder="Artist/Musical Show" id="interest3" type="text" class="validate interest music">
-                        <label for="interest3"></label>
-                      </p>
-                      <p>
-                        <input placeholder="Artist/Musical Show" id="interest4" type="text" class="validate interest music">
-                        <label for="interest4"></label>
-                      </p>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="collapsible-header">
-                      <i class="material-icons">directions_run</i>
-                      Sports
-                      <!-- <span class="badge">1</span> -->
-                    </div>
-                    <div class="collapsible-body">
-                      <p>
-                        <input placeholder="Team or Event" id="interest5" type="text" class="validate interest sports">
-                        <label for="interest5"></label>
-                      </p>
-                      <p>
-                        <input placeholder="Team or Event" id="interest6" type="text" class="validate interest sports">
-                        <label for="interest6"></label>
-                      </p>
-                      <p>
-                        <input placeholder="Team or Event" id="interest7" type="text" class="validate interest sports">
-                        <label for="interest7"></label>
-                      </p>
-                      <p>
-                        <input placeholder="Team or Event" id="interest8" type="text" class="validate interest sports">
-                        <label for="interest8"></label>
-                      </p>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="collapsible-header">
-                      <i class="material-icons">local_movies</i>
-                      Live Theater
-                      <!-- <span class="badge">1</span> -->
-                    </div>
-                    <div class="collapsible-body">
-                      <p>
-                        <input placeholder="Live Theater" id="interest9" type="text" class="validate interest theater">
-                        <label for="interest9"></label>
-                      </p>
-                      <p>
-                        <input placeholder="Live Theater" id="interest10" type="text" class="validate interest theater">
-                        <label for="interest10"></label>
-                      </p>
-                      <p>
-                        <input placeholder="Live Theater" id="interest11" type="text" class="validate interest theater">
-                        <label for="interest11"></label>
-                      </p>
-                      <p>
-                        <input placeholder="Live Theater" id="interest12" type="text" class="validate interest theater">
-                        <label for="interest12"></label>
-                      </p>
-                    </div>
-                  </li>
-                </ul>
-                <button id="interestBtn" class="btn waves-effect waves-light custom-button" type="submit" name="action">plan my trip</button>
-              </div>
-            <div id="divResult"></div>
+            </form>
+            <button id="back1" class="btn  waves-effect waves-light custom-button" type="submit" name="action">previous</button>
+            <button id="homeBtn" class="btn disabled waves-effect waves-light custom-button" type="submit" name="action">continue</button>
           </div>
+        </div>
+        <div id="cityDiv" class="col s12 m6 offset-m3 z-depth-5 custom-input-container custom-hidden">
+          <h4 class="orange-text">where do you want to go?</h4>
+          <div class="row">
+            <form id="cityForm">
+              <div class="row ">
+                <div class="input-field">
+                  <input placeholder="Philadelphia" id="city1" type="text" class="center validate city cityComplete custom-width-85" />
+                  <label for="city1"></label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field ">
+                  <input placeholder="Paris" id="city2" type="text" class="center validate city cityComplete custom-width-85" />
+                  <label for="city2"></label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field ">
+                  <input placeholder="Phoenix" id="city3" type="text" class="center validate city cityComplete custom-width-85" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field ">
+                  <input placeholder="etc.." id="city4" type="text" class="center validate city cityComplete custom-width-85" />
+                  <label for="city4"></label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field ">
+                  <input placeholder="..." id="city5" type="text" class="center validate city cityComplete custom-width-85" />
+                  <label for="city5"></label>
+                </div>
+              </div>
+            </form>
+            <button id="back2" class="btn  waves-effect waves-light custom-button" type="submit" name="action">previous</button>
+            <button id="cityBtn" class="btn waves-effect waves-light custom-button" type="submit" name="action">continue</button>
+            <div id="cityResults"></div>
           </div>
+        </div>
+        <!-- At this time, not all pickadate.js options are working with our implementation -->
+        <div id="dateDiv" class="col s12 m6 offset-m3 z-depth-5 custom-input-container custom-hidden">
+          <h4 class="orange-text">when do you want to go?</h4>
+          <input placeholder="Length of Vacation" id="vacaLength" type="text" class="center validate custom-width-85" />
+          <div class="input-field custom-width-85">
+            <input id="date1" type="text" name="date1" class="center datepicker date" />
+            <label for="date1">Date1</label>
+          </div>
+          <div class="input-field custom-width-85">
+            <input id="date2" type="text" name="date2" class="center datepicker date">
+            <label for="date2">Date2</label>
+          </div>
+          <div class="input-field custom-width-85">
+            <input id="date3" type="text" name="date3" class="center datepicker date">
+            <label for="date3">Date3</label>
+          </div>
+          <div class="input-field custom-width-85">
+            <input id="date4" type="text" name="date4" class="center datepicker date">
+            <label for="date4">Date4</label>
+          </div>
+          <div class="input-field custom-width-85">
+            <input id="date5" type="text" name="date5" class="center datepicker date">
+            <label for="date5">Date5</label>
+          </div>
+          <button id="back3" class="btn  waves-effect waves-light custom-button" type="submit" name="action">previous</button>
+          <button id="dateBtn" class="btn waves-effect waves-light custom-button" type="submit" name="action">continue</button>
+        </div>
+        <div id="interestDiv" class="col s12 m6 offset-m3 z-depth-5 custom-input-container custom-hidden">
+          <h4 class="orange-text">Interests</h4>
+          <div class="row">
+            <ul class="collapsible z-depth-0">
+              <li>
+                <div class="collapsible-header">
+                  <i class="material-icons">music_note</i>
+                  Music
+                </div>
+                <div class="collapsible-body">
+                  <p>
+                    <input placeholder="Artist/Musical Show" id="interest1" type="text" class="validate interest music">
+                    <label for="interest1"></label>
+                  </p>
+                  <p>
+                    <input placeholder="Artist/Musical Show" id="interest2" type="text" class="validate interest music">
+                    <label for="interest2"></label>
+                  </p>
+                  <p>
+                    <input placeholder="Artist/Musical Show" id="interest3" type="text" class="validate interest music">
+                    <label for="interest3"></label>
+                  </p>
+                  <p>
+                    <input placeholder="Artist/Musical Show" id="interest4" type="text" class="validate interest music">
+                    <label for="interest4"></label>
+                  </p>
+                </div>
+              </li>
+              <li>
+                <div class="collapsible-header">
+                  <i class="material-icons">directions_run</i>
+                  Sports
+                  <!-- <span class="badge">1</span> -->
+                </div>
+                <div class="collapsible-body">
+                  <p>
+                    <input placeholder="Team or Event" id="interest5" type="text" class="validate interest sports">
+                    <label for="interest5"></label>
+                  </p>
+                  <p>
+                    <input placeholder="Team or Event" id="interest6" type="text" class="validate interest sports">
+                    <label for="interest6"></label>
+                  </p>
+                  <p>
+                    <input placeholder="Team or Event" id="interest7" type="text" class="validate interest sports">
+                    <label for="interest7"></label>
+                  </p>
+                  <p>
+                    <input placeholder="Team or Event" id="interest8" type="text" class="validate interest sports">
+                    <label for="interest8"></label>
+                  </p>
+                </div>
+              </li>
+              <li>
+                <div class="collapsible-header">
+                  <i class="material-icons">local_movies</i>
+                  Live Theater
+                  <!-- <span class="badge">1</span> -->
+                </div>
+                <div class="collapsible-body">
+                  <p>
+                    <input placeholder="Live Theater" id="interest9" type="text" class="validate interest theater">
+                    <label for="interest9"></label>
+                  </p>
+                  <p>
+                    <input placeholder="Live Theater" id="interest10" type="text" class="validate interest theater">
+                    <label for="interest10"></label>
+                  </p>
+                  <p>
+                    <input placeholder="Live Theater" id="interest11" type="text" class="validate interest theater">
+                    <label for="interest11"></label>
+                  </p>
+                  <p>
+                    <input placeholder="Live Theater" id="interest12" type="text" class="validate interest theater">
+                    <label for="interest12"></label>
+                  </p>
+                </div>
+              </li>
+            </ul>
+            <button id="back4" class="btn  waves-effect waves-light custom-button" type="submit" name="action">previous</button>
+            <button id="interestBtn" class="btn waves-effect waves-light custom-button" type="submit" name="action">plan my trip</button>
+          </div>
+          <div id="divResult"></div>
+        </div>
       </div>
-    </main>
- <!-- footer -->
- <footer class="page-footer orange">
-  <div class="container">
-    <div class="row">
-      <div class="col l6 s12">
-        <h5 class="white-text">Group Project 1</h5>
-        <p class="grey-text text-lighten-4">This site was built in March 2018 as part of Penn Coding Bootcamp.</p>
+    </div>
+  </main>
+  <!-- footer -->
+  <footer class="page-footer orange">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Group Project 1</h5>
+          <p class="grey-text text-lighten-4">This site was built in March 2018 as part of Penn Coding Bootcamp.</p>
 
 
-      </div>
-      <!-- <div class="col l3 s12">
+        </div>
+        <!-- <div class="col l3 s12">
         <h5 class="white-text">Settings</h5>
         <ul>
           <li><a class="white-text" href="#!">Link 1</a></li>
@@ -219,38 +230,47 @@
           <li><a class="white-text" href="#!">Link 4</a></li>
         </ul>
       </div> -->
-      <div class="col l3 s12">
-        <h5 class="white-text">Connect</h5>
-        <ul>
-          <li><a class="white-text" href="https://moskowitza.github.io">Aaron</a></li>
-          <li><a class="white-text" href="https://shamique16.github.io">Shamique</a></li>
-          <li><a class="white-text" href="https://tonybcodes.github.io">Tony</a></li>
-          <li><a class="white-text" href="https://okputadora.github.io">Michael</a></li>
-        </ul>
+        <div class="col l3 s12">
+          <h5 class="white-text">Connect</h5>
+          <ul>
+            <li>
+              <a class="white-text" href="https://moskowitza.github.io">Aaron</a>
+            </li>
+            <li>
+              <a class="white-text" href="https://shamique16.github.io">Shamique</a>
+            </li>
+            <li>
+              <a class="white-text" href="https://tonybcodes.github.io">Tony</a>
+            </li>
+            <li>
+              <a class="white-text" href="https://okputadora.github.io">Michael</a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="footer-copyright">
-    <div class="container">
-    Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+    <div class="footer-copyright">
+      <div class="container">
+        Made by
+        <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      </div>
     </div>
-  </div>
-</footer>
-<!-- end Footer -->
+  </footer>
+  <!-- end Footer -->
 
-    <!--  Scripts from Materilize-->
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <!--  Scripts from Materilize-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
-    <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="js/materialize.js"></script>
-    <script src="js/init.js"></script>
-    <!-- OUR Application -->
-    <script src="js/application.js"></script>
-    <script src="js/loadViews.js"></script>
-    <script src="js/javascript.js"></script>
-    <!-- MOMENT -->
-    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+  <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+  <!-- OUR Application -->
+  <script src="js/application.js"></script>
+  <script src="js/loadViews.js"></script>
+  <script src="js/javascript.js"></script>
+  <!-- MOMENT -->
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 
 </body>
 
