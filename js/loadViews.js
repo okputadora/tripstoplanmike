@@ -73,6 +73,31 @@ $(window).on("load", function(){
     }, 300)
   }
 
+  
+  
+  //This will bring the user back from the cities that they want to travel to, to the hometown page
+  $("#back2").on("click", function(b){
+    console.log("boop");
+    b.preventDefault()
+    loadPrevPrompt($("#cityDiv"), $("#homeDiv"))
+    
+  })
+//This brings users from vacation dates to the city picker
+  $("#back3").on("click", function(b){
+    console.log("boop");
+    b.preventDefault()
+    loadPrevPrompt($("#dateDiv"), $("#cityDiv"))
+    
+  })
+//This brings the user from interest picker to the vacation dates
+  $("#back4").on("click", function(b){
+    console.log("boop");
+    b.preventDefault()
+    loadPrevPrompt($("#interestDiv"), $("#dateDiv"))
+    
+  })
+
+
   function loadPrevPrompt(currentPrompt, prevPrompt){
     // fade out the homeDiv
     currentPrompt.css("opacity", "0")
@@ -90,4 +115,6 @@ $(window).on("load", function(){
       }, 600)
     }, 300)
   }
+
+  
 })
