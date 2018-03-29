@@ -43,7 +43,7 @@ var globalInfoWindow;
          $(document).on("click", ".datewindow", function(){
            // clear the city marker
            displayEvents(map, this)
-
+           displayHotelsAndFlights(map, this)
          })
          // reset map
          $(document).on("click", ".resetMap", function(){
@@ -53,6 +53,7 @@ var globalInfoWindow;
            cityMarker.setMap(map)
            var zoomLevel = 11
            $(".dateWindowsContainer").empty()
+           $(".hotelAndFlightContainer").empty().css("opacity", 0)
            var zoomOut = setInterval(function(){
              map.setZoom(zoomLevel)
              zoomLevel -= 1
@@ -99,6 +100,7 @@ var globalInfoWindow;
        if (vacation.city.cityName === marker.city){
          dateWindows = vacation.dateWindows
          vacaIndex = index
+         city = vacation.city.cityName
          return
        }
      })
@@ -113,8 +115,32 @@ var globalInfoWindow;
     var dateWindowContent = "<div><h3 class='cityName'>"+marker.city+"</h3>"+buttons
     $(".dateWindowsContainer").append(dateWindowContent)
     $(".dateWindowsContainer").append("<button class='btn wave-effect waves-light resetMap'>Reset Map</button")
+    $(".dateWindowsContainer").css("opacity", .9)
   }
 
+  function displayHotelsAndFlights(map, dateWindow){
+    $(".hotelAndFlightContainer").empty()
+    var index = dateWindow.id.slice(0, dateWindow.id.indexOf("-"))
+    console.log(vacations)
+    var city = vacations[index].city.cityName
+    console.log("hotel city")
+    console.log(city)
+    var startDate = dateWindow.id.slice(dateWindow.id.indexOf("-")+ 1)
+    var formattedDate = moment(startDate, "YYYYMMDD").format("YYYY-MM-DD")
+    console.log(formattedDate)
+    var hotels = JSON.parse(localStorage.getItem("vacRoomHold"))
+    var price;
+    hotels.forEach(function(hotel){
+      if (hotel.city === city && hotel.stayDate == formattedDate){
+        // we've found the right hotel price
+        price = hotel.avgCost
+        return;
+      }
+    })
+    $(".hotelAndFlightContainer").append("Average hotel price: $"+price)
+    $(".hotelAndFlightContainer").css("opacity", .9)
+
+  }
 
   function displayEvents(map, pin){
      // clear the events

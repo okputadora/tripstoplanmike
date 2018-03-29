@@ -50,16 +50,28 @@
   top: 50%;
   left: 200px;
 }
-.dateWindowsContainer{
-  width: 600px;
+.infoContainer{
   position: fixed;
-  top: 100px;
-  left: 50px;
   z-index:1000;
   background: #f9f9f9;
-  opacity: .9;
+  opacity: 0;
+  transition: .3s;
   border-radius: 4px;
 }
+.dateWindowsContainer{
+  width: 600px;
+  top: 100px;
+  left: 50px;
+}
+
+.hotelAndFlightContainer{
+  width: 400px;
+  bottom: 180px;
+  left: 50px;
+  font-size: 20px;
+  padding: 10px;
+}
+
 .datewindow, .resetMap{
   margin: 0 0 10px 10px;
   text-transform: capitalize;
@@ -182,5 +194,3 @@ color: #29B6F6
     font-size: 60px;
   }
 }
-
-
