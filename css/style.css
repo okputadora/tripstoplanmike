@@ -159,6 +159,19 @@ color: #29B6F6
   padding-top: 30px;
 }
 
+#back1{
+  background-color: #29B6F6;
+}
+#back2{
+  background-color: #29B6F6;
+}
+#back3{
+  background-color: #29B6F6;
+}
+#back4{
+  background-color: #29B6F6;
+}
+
 @media screen and (max-width: 1290px){
   .custom-header{
     font-size: 70px;
@@ -169,3 +182,5 @@ color: #29B6F6
     font-size: 60px;
   }
 }
+
+

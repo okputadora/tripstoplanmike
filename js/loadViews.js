@@ -72,4 +72,49 @@ $(window).on("load", function(){
       }, 600)
     }, 300)
   }
+
+  
+  
+  //This will bring the user back from the cities that they want to travel to, to the hometown page
+  $("#back2").on("click", function(b){
+    console.log("boop");
+    b.preventDefault()
+    loadPrevPrompt($("#cityDiv"), $("#homeDiv"))
+    
+  })
+//This brings users from vacation dates to the city picker
+  $("#back3").on("click", function(b){
+    console.log("boop");
+    b.preventDefault()
+    loadPrevPrompt($("#dateDiv"), $("#cityDiv"))
+    
+  })
+//This brings the user from interest picker to the vacation dates
+  $("#back4").on("click", function(b){
+    console.log("boop");
+    b.preventDefault()
+    loadPrevPrompt($("#interestDiv"), $("#dateDiv"))
+    
+  })
+
+
+  function loadPrevPrompt(currentPrompt, prevPrompt){
+    // fade out the homeDiv
+    currentPrompt.css("opacity", "0")
+    currentPrompt.css("margin-top", "-50px")
+    // wait until it fades out
+    setTimeout(function(){
+      // then remove it
+      currentPrompt.addClass("custom-hidden")
+      prevPrompt.removeClass("custom-hidden")
+      // add the next form
+      // fade in the new window
+      setTimeout(function(){
+        prevPrompt.css("opacity", "1")
+        prevPrompt.css("margin-top", "0px")
+      }, 600)
+    }, 300)
+  }
+
+  
 })
