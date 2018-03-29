@@ -18,13 +18,12 @@ $(window).on("load", function () {
       var cities = destinations.map(function(destination){
         return destination.cityName
       })
-      console.log("Cities from storage")
-      console.log(cities)
+
       // and add the origin city, we'll need this airport code too
       var homeCity = localStorage.homeCity
+      var hotelCities = Object.assign({}, cities)
       cities.unshift(homeCity)
 
-      console.log(cities)
       // OK, we've got the cities. now lets get airport codes from the city
       // we'll recursively run getAirportCode until we have them all, pass this function
       // the list of our cities and an empty list to build the list of codes and
@@ -37,7 +36,7 @@ $(window).on("load", function () {
         // get flights
         getFlights()
         // and get hotels
-        outer()
+        outer(hotelCities)
       })
     }, 0)
   })
@@ -167,9 +166,6 @@ $(window).on("load", function () {
       })
   }
 
-console.log("HOTELS LINKED")
-
-//----- global variables-----------------------------------
 
   //----- functions------------------------------------------
 
@@ -178,7 +174,9 @@ console.log("HOTELS LINKED")
   //***note*** needs to be added to javascript.js - Requires hotelCodes array in local storage
   //***note*** needs to be added to javascript.js - hotelCodes is the airportCodes array with the origin city sliced off
   //***note*** needs to be added to javascript.js - localStorage.setItem("hotelCodes", JSON.stringify(airportCodes.slice(1)));
-  function hotelstay(loc, date) {
+  function hotelstay(loc, date, city) {
+    console.log("CITY to put in hotel info: ")
+    console.log(city)
       var avgRoomRate = 0;
       var vacRoomCost = {
           cityCode: "",
@@ -216,7 +214,7 @@ console.log("HOTELS LINKED")
               }
 
               vacRoomCost = {
-                  cityCode: loc,
+                  city: city,
                   stayDate: date.startDate,
                   avgCost: avgRoomRate.toFixed(2)
               };
@@ -229,11 +227,11 @@ console.log("HOTELS LINKED")
   }
 
   // Inner loop goues through each date range
-  function inner(city) {
+  function inner(city, hotelCity) {
       var ic = 0;
 
       while (ic < (JSON.parse(localStorage.getItem("hotelRanges")).length)) {
-          hotelstay(city, JSON.parse(localStorage.getItem("hotelRanges"))[ic]);     /* call hotelstay with city and date */
+          hotelstay(city, JSON.parse(localStorage.getItem("hotelRanges"))[ic], hotelCity);     /* call hotelstay with city and date */
           ic++
       }
 
@@ -241,10 +239,10 @@ console.log("HOTELS LINKED")
   }
 
   // Outer loop goes through each city
-  function outer() {
+  function outer(hotelCities) {
       var oc = 0;     /* outerloop counter */
       while (oc < (JSON.parse(localStorage.getItem("hotelCodes")).length)) {
-          inner(JSON.parse(localStorage.getItem("hotelCodes"))[oc]);      /* call inner loop with present city name */
+          inner(JSON.parse(localStorage.getItem("hotelCodes"))[oc], hotelCities[oc]);      /* call inner loop with present city name */
           oc++
       }
 
