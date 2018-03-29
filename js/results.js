@@ -113,7 +113,6 @@ vacations = JSON.parse(vacations)
 
 
   function displayEvents(map, pin){
-    var events = []
      // clear the events
      for (var i = 0; i < eventMarkers.length; i++) {
        eventMarkers[i].setMap(null);
@@ -129,26 +128,28 @@ vacations = JSON.parse(vacations)
         }
       })
       interests.forEach(function(interest){
-        interest.events.forEach(function(ev){
-          events.push(ev)
+        var label = interest.interestName
+        label = label.slice(0,2)
+        interest.events.forEach(function(currentEvent){
+          var lat = parseFloat(currentEvent.lat)
+          var lng = parseFloat(currentEvent.lon)
+          var coords = {lat: lat, lng: lng}
+          var eventMarker = new google.maps.Marker({
+            position: coords,
+            map: map,
+            label: label,
+            title: currentEvent.title
+          })
+          eventMarker.addListener("click", function(){
+            // load information into info window
+            displayEventInfo(eventMarker, currentEvent, map)
+          })
+          eventMarkers.push(eventMarker)
         })
       })
 
-      events.forEach(function(currentEvent){
-        var lat = parseFloat(currentEvent.lat)
-        var lng = parseFloat(currentEvent.lon)
-        var coords = {lat: lat, lng: lng}
-        var eventMarker = new google.maps.Marker({
-          position: coords,
-          map: map,
-          title: currentEvent.title
-        })
-        eventMarker.addListener("click", function(){
-          // load information into info window
-          displayEventInfo(eventMarker, currentEvent, map)
-        })
-        eventMarkers.push(eventMarker)
-      })
+
+
    }
    function displayEventInfo(marker, currentEvent, map){
      // close any open windows
