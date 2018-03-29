@@ -165,9 +165,10 @@ vacations = JSON.parse(vacations)
        var description = currentEvent.description
      }
      else{description = ""}
+     var startTime = moment(currentEvent.startTime, "YYYY-MM-DD HH:mm:ss").format("dddd, MMMM Do YYYY")
      var infoWindow = new google.maps.InfoWindow({
-       content: "<div><h4>"+currentEvent.title+"</h4><p class='truncate toggleText'>"+description+"</p>"+
-       "<p>"+currentEvent.startTime+"</p></div>"
+       content: "<div><h4>"+currentEvent.title+"</h4><p>"+startTime+
+       "</p><p class='truncate toggleText'>"+description+"</p></div>"
      })
      globalInfoWindow = infoWindow;
      infoWindow.open(map, marker)
