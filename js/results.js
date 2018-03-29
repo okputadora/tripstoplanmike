@@ -8,7 +8,6 @@ vacations = JSON.parse(vacations)
 // playing with changing data to see what happens
 
    function initMap(){
-     console.log(localStorage)
      // get coords for all the cities
      getCoords(displayCities, function(){
        var map = new google.maps.Map(document.getElementById('map'), {
@@ -94,8 +93,6 @@ vacations = JSON.parse(vacations)
    }
 
   function displayDateWindows(marker, map){
-
-    console.log("Displaying date window")
     var dateWindows;
     var vacaIndex;
     vacations.forEach(function(vacation, index){
@@ -154,19 +151,13 @@ vacations = JSON.parse(vacations)
           eventMarkers.push(eventMarker)
         })
       })
-
-
-
    }
    function displayEventInfo(marker, currentEvent, map){
      // close any open windows
      if(globalInfoWindow){
       globalInfoWindow.close()
      }
-     console.log("MARKER POSITION")
-     console.log(map.zoom)
      if (map.zoom === 11){
-       console.log("PANNING")
        var lat = marker.getPosition().lat()
        var lat = lat + 0.1
        var lng = marker.getPosition().lng()
