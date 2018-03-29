@@ -31,8 +31,8 @@ vacations = JSON.parse(vacations)
          cityMarker.addListener('click', function(){
            var zoomLevel = 5
            var zoomin = setInterval(function(){
+             map.panTo(cityMarker.getPosition())
              map.setZoom(zoomLevel);
-             map.setCenter(cityMarker.getPosition())
              zoomLevel += 1
              if (zoomLevel >  11){
                displayDateWindows(cityMarker, map)
@@ -53,9 +53,16 @@ vacations = JSON.parse(vacations)
              eventMarkers[i].setMap(null);
            }
            cityMarker.setMap(map)
+           var zoomLevel = 11
            $(".dateWindowsContainer").empty()
-           map.panTo({lat: 38.850033, lng: -97.6500523})
-           map.setZoom(4)
+           var zoomOut = setInterval(function(){
+             map.setZoom(zoomLevel)
+             zoomLevel -= 1
+             if (zoomLevel < 4){
+               map.panTo({lat: 38.850033, lng: -97.6500523})
+               clearInterval(zoomOut)
+             }
+           }, 200)
          })
        })
      })
