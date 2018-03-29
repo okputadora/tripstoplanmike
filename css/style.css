@@ -1,5 +1,10 @@
 /* materialize.min.css */
 
+#letsGetStarted{
+  opacity: 1;
+  height: auto;
+  transition: .3s;
+}
 #cities{
     float:left;
 }
@@ -15,6 +20,10 @@
   margin-top: 50px;
 }
 
+.custom-button{
+  /* background-color: #E08DAC !important; */
+  margin-bottom: 20px;
+}
 .interestTitle {
     text-align: center;
 }
@@ -48,7 +57,7 @@
   opacity: .9;
   border-radius: 4px;
 }
-.datewindow{
+.datewindow, .resetMap{
   margin: 0 0 10px 10px;
   text-transform: capitalize;
 }
@@ -64,6 +73,9 @@
   width: 100%;
 }
 #loader {
+  position: fixed;
+  top: 0;
+  left: 0;
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -82,6 +94,7 @@
 .cityName{
   padding: 10px;
   margin: 0;
+  text-transform: capitalize;
 }
 .custom-input-container{
   background-color: #f9f9f9;

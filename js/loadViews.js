@@ -24,6 +24,10 @@ $(window).on("load", function(){
   $("#homeBtn").on("click", function(e){
     // FORM VALIDATION SHOULD HAPPEN HERE
     e.preventDefault()
+    setTimeout(function(){
+      $("#letsGetStarted").css("opacity", "0")
+      $("#letsGetStarted").css("height", "0")
+    }, 200)
     loadNextPrompt($("#homeDiv"), $("#cityDiv"))
   })
 
@@ -46,7 +50,7 @@ $(window).on("load", function(){
     $("#interestDiv").css("margin-top", "-50px")
     setTimeout(function(){
       $("#main-container").empty()
-      window.location='loading.html'
+      window.location='results.html'
     }, 500)
     // go to the results page
   })

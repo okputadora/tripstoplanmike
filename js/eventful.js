@@ -60,7 +60,6 @@ setInterval(function(){
           localStorage.setItem("vacations", JSON.stringify(vacations))
           // remove loading window
           $("#loader").remove()
-          window.location = "results.html"
         }
       })
     }

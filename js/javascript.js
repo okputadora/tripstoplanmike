@@ -49,6 +49,7 @@ $(window).on("load", function () {
         // WE GOT ALL THE INFO WE NEED
         console.log("WE'RE DONE")
         console.log(fares)
+        localStorage.setItem("fares", JSON.stringify(fares))
       }
       else{
         getFlights()

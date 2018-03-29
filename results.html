@@ -42,6 +42,20 @@
       <div class="z-depth-3 dateWindowsContainer"></div>
       <!-- <div id="vacationSummary">We've picked some vacations for you</div> -->
       <div id="map"></div>
+      <div id="loader">
+        <div class="preloader-wrapper big active margin30">
+          <div class="spinner-layer spinner-blue-only">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div><div class="gap-patch">
+              <div class="circle"></div>
+            </div><div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+        </div>
+        <div id="loadingMessages"></div>
+      </div>
     </div>
     <!-- FOOTER -->
 <!-- footer -->
@@ -54,15 +68,6 @@
 
 
         </div>
-        <!-- <div class="col l3 s12">
-          <h5 class="white-text">Settings</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div> -->
         <div class="col l3 s12">
           <h5 class="white-text">Connect</h5>
           <ul>
@@ -83,6 +88,7 @@
 <!-- end Footer -->
     <!-- MOMENT -->
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <script src="js/eventful.js"></script>
     <script src="js/results.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYUN28qqTKuwxF_I12PmuRvAQ6MqbmUDk&callback=initMap"></script>
 

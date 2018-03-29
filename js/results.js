@@ -1,16 +1,18 @@
 var displayCities = JSON.parse(localStorage.cities)
 var coordsList = []
 var eventMarkers = []
+var globalInfoWindow;
 var vacations = localStorage.vacations
 vacations = JSON.parse(vacations)
 
 // playing with changing data to see what happens
 
    function initMap(){
+     console.log(localStorage)
      // get coords for all the cities
      getCoords(displayCities, function(){
        var map = new google.maps.Map(document.getElementById('map'), {
-         zoom: 4.5,
+         zoom: 4,
          mapTypeControl: false,
          center: {lat: 38.850033, lng: -97.6500523}
        });
@@ -27,7 +29,7 @@ vacations = JSON.parse(vacations)
          // set up an event listner for each pin we drop.
          // if the user clicks that pin zoom in
          cityMarker.addListener('click', function(){
-           var zoomLevel = 6
+           var zoomLevel = 5
            var zoomin = setInterval(function(){
              map.setZoom(zoomLevel);
              map.setCenter(cityMarker.getPosition())
@@ -45,11 +47,21 @@ vacations = JSON.parse(vacations)
            displayEvents(map, this)
 
          })
+         // reset map
+         $(document).on("click", ".resetMap", function(){
+           for (var i = 0; i < eventMarkers.length; i++) {
+             eventMarkers[i].setMap(null);
+           }
+           cityMarker.setMap(map)
+           $(".dateWindowsContainer").empty()
+           map.panTo({lat: 38.850033, lng: -97.6500523})
+           map.setZoom(4)
+         })
        })
      })
    }
 
-   function getCoords(displayCities, callback){
+  function getCoords(displayCities, callback){
      city = displayCities.shift()
      $.ajax({
        url: "https://maps.googleapis.com/maps/api/geocode/json?address="+city.cityName+"&key=AIzaSyCYUN28qqTKuwxF_I12PmuRvAQ6MqbmUDk&callback"
@@ -96,6 +108,7 @@ vacations = JSON.parse(vacations)
 
     var dateWindowContent = "<div><h3 class='cityName'>"+marker.city+"</h3>"+buttons
     $(".dateWindowsContainer").append(dateWindowContent)
+    $(".dateWindowsContainer").append("<button class='btn wave-effect waves-light resetMap'>Reset Map</button")
   }
 
 
@@ -136,9 +149,13 @@ vacations = JSON.parse(vacations)
       })
    }
    function displayEventInfo(marker, currentEvent, map){
+     // close any open windows
+     if(globalInfoWindow){
+      globalInfoWindow.close()
+     }
      console.log("MARKER POSITION")
      var lat = marker.getPosition().lat()
-     var lat = lat + 0.1030022
+     var lat = lat + 0.1
      var lng = marker.getPosition().lng()
      map.panTo({lat: lat, lng: lng})
      if (currentEvent.description !== null){
@@ -149,6 +166,7 @@ vacations = JSON.parse(vacations)
        content: "<div><h4>"+currentEvent.title+"</h4><p class='truncate toggleText'>"+description+"</p>"+
        "<p>"+currentEvent.startTime+"</p></div>"
      })
+     globalInfoWindow = infoWindow;
      infoWindow.open(map, marker)
    }
    // toggle length of long descriptions
