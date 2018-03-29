@@ -23,11 +23,8 @@ setInterval(function(){
     var vacations = []
     appendCity()
     function appendCity(){
-      console.log("appending City")
       // remove one city from the list
-      console.log(cities)
       city = cities.shift()
-      console.log("cities")
       // create a new vacation object and add the city to it
       var vacation = {
         city: city,
@@ -40,9 +37,6 @@ setInterval(function(){
       appendDates(vacation, dateIndex, function(){
         // add the vacation to the list of possible vacations
         vacations.push(vacation)
-        console.log("inside the appendDates callback")
-        console.log(cities)
-        console.log(cities.length)
         // if there are more cities repeat the process
         if (cities.length !== 0){
           // reset the dateRanges.
@@ -54,7 +48,6 @@ setInterval(function(){
           appendCity()
         }
         else {
-          console.log("===============END RESULT==============")
           localStorage.setItem("vacations", JSON.stringify(vacations))
           // remove loading window
           $("#loader").remove()
@@ -62,7 +55,6 @@ setInterval(function(){
       })
     }
     function appendDates(vacation, dateIndex, callback){
-      console.log("appending dates")
       // remove a datewindow from the list and add it to an object
       // that will also store interests associated with that date (& city)
       var window = dateRanges.shift()
@@ -83,25 +75,18 @@ setInterval(function(){
           appendDates(vacation, dateIndex, callback)
         }
         else{
-          console.log("got all the date windows for this city")
-          console.log("going to get the next city")
-          console.log(cities)
           callback()
         }
       })
     }
     function appendInterests(vacation, dateIndex, callback){
-      console.log("category:")
       var interest = interests.shift()
-      console.log(interest.category)
       interest = {
         interestName: interest.interestName,
         interestCategory: interest.category,
         events: []
       }
       // get events from API
-      console.log("VACATION")
-      console.log(vacation)
       var api_url = 'http://api.eventful.com/json/events/search?app_key='+ api_key+
       '&keywords='+interest.interestName +
       '&category='+interest.category +
@@ -115,7 +100,6 @@ setInterval(function(){
         // we'll have to do our own error handling
         response = JSON.parse(error.responseText)
         if (response.events){
-          console.log(response.events.event)
           var parsedResults = response.events.event.map(function(event){
             return ({
               title: event.title,
@@ -141,21 +125,5 @@ setInterval(function(){
         else {callback()}
       })
       .done(function(data){
-        console.log(data.responseText);
       })
     }
-cities.forEach(function(){
-  $.ajax({
-    paramater: city
-  })
-  .done{
-    Airportcode = response
-  }
-
-	$.ajax({
-	  Parameter: airportCode
-	}
-	.done{
-	  Flight = response
-	}
-}
