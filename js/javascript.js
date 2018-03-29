@@ -12,7 +12,6 @@ $(window).on("load", function () {
     // set time out zero to ensure this function is run after the
     // function connected to the same click in application.js
     setTimeout(function(){
-      console.log(localStorage.cities)
       var destinations = JSON.parse(localStorage.cities)
       // convert each city object into a clean array of cities
       var cities = destinations.map(function(destination){
@@ -21,7 +20,9 @@ $(window).on("load", function () {
 
       // and add the origin city, we'll need this airport code too
       var homeCity = localStorage.homeCity
+      // make copies because we end up mutating cities
       var hotelCities = Object.assign({}, cities)
+      var flightCities = Object.assign([], cities)
       cities.unshift(homeCity)
 
       // OK, we've got the cities. now lets get airport codes from the city
@@ -34,21 +35,25 @@ $(window).on("load", function () {
         localStorage.setItem("airportCodes", JSON.stringify(airportCodes))
         localStorage.setItem("hotelCodes", JSON.stringify(airportCodes.slice(1)));
         // get flights
-        getFlights()
+        getFlights(flightCities)
         // and get hotels
         outer(hotelCities)
       })
     }, 0)
   })
 
-  function getFlights(){
+  function getFlights(flightCities){
     console.log("OK, looking for flights now with...")
     //test data
+    console.log(flightCities)
+    var flightCity = flightCities.pop()
     var org = "&origin=" + airportCodes[0]  /* ABC */
     var dest = "&destination=" + airportCodes.pop();  /* XYZ */
     // NEED TO CONVERT THIS DATE
     var departureDates = JSON.parse(localStorage.departureDates)
-    appendDates(org, dest, departureDates, function(){
+    console.log("FLIGHT CITY")
+    console.log(flightCity)
+    appendDates(org, dest, departureDates, flightCity, function(){
       if (airportCodes.length === 1){
         // WE GOT ALL THE INFO WE NEED
         console.log("WE'RE DONE")
@@ -56,14 +61,14 @@ $(window).on("load", function () {
         localStorage.setItem("fares", JSON.stringify(fares))
       }
       else{
-        getFlights()
+        getFlights(flightCities)
       }
     })
 
   }
-  function appendDates(origin, destination, departureDates, callback){
-    console.log(departureDates)
-    console.log(typeof departureDates)
+  function appendDates(origin, destination, departureDates, flightCity, callback){
+    console.log("FLIGHT CITY form append dates")
+    console.log(flightCity)
     var departureDate = departureDates.shift()
     var depDate = "&departure_date=" + departureDate; /* YYYY-mm-dd */
     // end of test data/
@@ -81,16 +86,13 @@ $(window).on("load", function () {
       method: "GET"
     })
       .then(function (response) {
-        console.log(response)
-        console.log("DEOARTURE DATES LENGTH")
-        console.log(departureDates.length)
-        fares.push(response)
+        fares.push({city: flightCity, response: response})
         if (departureDates.length === 0){
 
           callback()
         }
         else{
-          appendDates(origin, destination, departureDates, callback)
+          appendDates(origin, destination, departureDates, flightCity, callback)
         }
         // if (flights){
         //   flights.push(response)
@@ -123,8 +125,6 @@ $(window).on("load", function () {
     // and something to do when it's done (i.e. the callback)
   function airportCodeLookUp(cities, callback){
     var city = cities.shift()
-    console.log("CITY TO LOOKUP")
-    console.log(city)
     var url = "https://api.sandbox.amadeus.com/v1.2/airports/autocomplete?"
       $.ajax({
         url: "https://api.sandbox.amadeus.com/v1.2/airports/autocomplete?",
@@ -135,7 +135,6 @@ $(window).on("load", function () {
         }
       })
       .catch(function(error){
-        console.log("ERROR "+error)
         if (city.toLowerCase() === "philadelphia"){
           airportCodes.push("PHL")
         }
@@ -153,8 +152,6 @@ $(window).on("load", function () {
         }
       })
       .done(function (data) {
-          console.log("SUCCESS")
-          console.log(data[0])
           var code = data[0].value
           airportCodes.push(code)
           if (cities.length === 0){
@@ -175,8 +172,6 @@ $(window).on("load", function () {
   //***note*** needs to be added to javascript.js - hotelCodes is the airportCodes array with the origin city sliced off
   //***note*** needs to be added to javascript.js - localStorage.setItem("hotelCodes", JSON.stringify(airportCodes.slice(1)));
   function hotelstay(loc, date, city) {
-    console.log("CITY to put in hotel info: ")
-    console.log(city)
       var avgRoomRate = 0;
       var vacRoomCost = {
           cityCode: "",
@@ -191,9 +186,6 @@ $(window).on("load", function () {
       var dest = "&location=" + loc;                  /* IATA city code */
       var checkin = "&check_in=" + date.startDate;    /* YYYY-mm-dd */
       var checkout = "&check_out=" + date.endDate;   /* YYYY-mm-dd */
-
-      console.log(dest + "   " + checkin + "   " + checkout);
-
       var rad = "&radius=20";   /* distance in km */
       // end of test search parameters
 
@@ -202,7 +194,7 @@ $(window).on("load", function () {
       var roomtype = "&all_rooms=false";  /* shows lowest rate room */
 
       var searchurl = siteurl + apikey + dest + checkin + checkout + rad + curr + rescount + roomtype;
-      console.log(searchurl);
+
 
       $.ajax({
           url: searchurl,
@@ -219,9 +211,9 @@ $(window).on("load", function () {
                   avgCost: avgRoomRate.toFixed(2)
               };
 
-              console.log(vacRoomCost);
+
               vacRoomHold.push(vacRoomCost);
-              console.log(vacRoomHold)
+
               localStorage.setItem("vacRoomHold", JSON.stringify(vacRoomHold))
           });
   }

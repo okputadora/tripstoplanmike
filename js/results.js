@@ -129,15 +129,27 @@ var globalInfoWindow;
     var formattedDate = moment(startDate, "YYYYMMDD").format("YYYY-MM-DD")
     console.log(formattedDate)
     var hotels = JSON.parse(localStorage.getItem("vacRoomHold"))
-    var price;
+    var hotelPrice;
+    // find the hotel
     hotels.forEach(function(hotel){
       if (hotel.city === city && hotel.stayDate == formattedDate){
         // we've found the right hotel price
-        price = hotel.avgCost
+        hotelPrice = hotel.avgCost
         return;
       }
     })
-    $(".hotelAndFlightContainer").append("Average hotel price: $"+price)
+    // find the flight
+    var flights = JSON.parse(localStorage.getItem("fares"))
+    var flightPrice;
+    flights.forEach(function(flight){
+      console.log(flight.response.results[0])
+      console.log(flight.city)
+      if (flight.city === city && flight.response.results[0].departure_date == formattedDate){
+        flightPrice = flight.response.results[0].price
+      }
+    })
+    $(".hotelAndFlightContainer").append("<p>Average hotel price: $"+hotelPrice+"</p>")
+    $(".hotelAndFlightContainer").append("<p>Flight price: $"+flightPrice+"</p>")
     $(".hotelAndFlightContainer").css("opacity", .9)
 
   }
