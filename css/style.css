@@ -125,3 +125,24 @@ body {
     min-height: 90vh;
     flex: 1 0 auto;
   }
+
+  #SEARCH {
+    color: #1BE7FF; 
+    float: left;
+    font-size: 100px;
+    padding-left: 150px;
+   
+  }
+
+  #SIMPLIFY {
+    color: #6EEB83; 
+    float: left;
+    font-size: 100px;
+    padding-left: 10px;
+  }
+  #SAVE {
+    color: #E4FF1A; 
+    float: left;
+    font-size: 100px;
+    padding-left: 10px;
+  }
