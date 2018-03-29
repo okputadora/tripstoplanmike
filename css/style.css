@@ -20,6 +20,9 @@
   margin-top: 50px;
 }
 
+.custom-header{
+
+}
 .custom-button{
   /* background-color: #E08DAC !important; */
   margin-bottom: 20px;
@@ -125,42 +128,44 @@ body {
     min-height: 90vh;
     flex: 1 0 auto;
   }
-
-  #SEARCH {
-    color: #1BE7FF; 
-    float: left;
+  .custom-header{
     font-size: 100px;
-    padding-left: 150px;
-   
+    transition: .2s;
+  }
+  #SEARCH {
+    color: #1BE7FF;
   }
 
   #SIMPLIFY {
-    color: #6EEB83; 
-    float: left;
-    font-size: 100px;
-    padding-left: 10px;
+    color: #6EEB83;
   }
   #SAVE {
-    color: #E4FF1A; 
-    float: left;
-    font-size: 100px;
-    padding-left: 10px;
+    color: #E4FF1A;
   }
 #Bout {
   align-content: left;
   color: #FF9800;
 }
 
-#start{ 
-padding-left: 30px;
+#start{
 color: #29B6F6
 }
 
 #stuff{
-  text-align: left;
   font-size: 20px;
 }
 
 #welcomeStart{
   padding-top: 30px;
+}
+
+@media screen and (max-width: 1290px){
+  .custom-header{
+    font-size: 70px;
+  }
+}
+@media screen and (max-width: 800px){
+  .custom-header{
+    font-size: 60px;
+  }
 }
