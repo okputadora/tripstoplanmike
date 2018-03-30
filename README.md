@@ -2,6 +2,7 @@
 TripsToPlan is an application for planning trips that are suited to your interests
 
 ## File structure
+.
 +--index.html
 +--application.html
 +--results.html
