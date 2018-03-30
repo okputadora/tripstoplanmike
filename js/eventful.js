@@ -1,15 +1,15 @@
-// Eventful.js is responsbile collecting event information
-// from the ventful api.
-//
-// The general structure is as follows:
-// 1. build all of our queries by looping through the cities, datewindows,
-//    and interests. We need a query for each possible combination of city,
-//    window and interest.
-//
-// 2. take those queries and map them into an array of promises that make
-//    ajax requests
-//
-// 3. wait for all of the promises to be fullfilled and then save the results.
+Eventful.js is responsbile collecting event information
+from the ventful api.
+
+The general structure is as follows:
+1. build all of our queries by looping through the cities, datewindows,
+   and interests. We need a query for each possible combination of city,
+   window and interest.
+
+2. take those queries and map them into an array of promises that make
+   ajax requests
+
+3. wait for all of the promises to be fullfilled and then save the results.
 
 // global variables
 var cors_api_url = 'https://cors-anywhere.herokuapp.com/';
