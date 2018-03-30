@@ -1,19 +1,54 @@
-var displayCities = JSON.parse(localStorage.cities)
-var coordsList = []
-var eventMarkers = []
+// results.js takes the data from eventful.js and amadeus.js
+// and displays them in the browser on top of a google map
+//
+// the general structure is as follows:
+// 1. Initialize the map
+// 2. use googleGeoCoder to get the coordinates of the cities
+//    2.1 put the cities on the map as their results come in
+// 3. display datewindows when a city is clicked
+// 4. display events when a datewindow is clicked
+// 5. display flight and hotel info when a datewindow is clicked
+// 6. display event info when an event is clicked
+// 7. reset map
+
+
+var displayCities = JSON.parse(localStorage.cities);
+var eventList = JSON.parse(localStorage.eventList);
+var coordsList = []; // store all of the geoCoordinates of the cities
+var eventMarkers = []; // store marker objects for the events
 var globalInfoWindow;
-// vacations = JSON.parse(vacations)
+var map;
+//1. initialize the map
+function initMap(){
+  map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 4,
+    mapTypeControl: false,
+    center: {lat: 38.850033, lng: -97.6500523}
+  });
+  //2. get the coordinates and put a pin on the map for each city
+  getCoords(map)
+})
 
-// playing with changing data to see what happens
+function getCoords(map){
+  displayCities.forEach(function(city){
+    $.ajax({
+      url: "https://maps.googleapis.com/maps/api/geocode/json?address="+city.cityName+"&key=AIzaSyCYUN28qqTKuwxF_I12PmuRvAQ6MqbmUDk&callback"
+    })
+    .done(function(result){
+      var lat = result.results[0].geometry.location.lat;
+      var lng = result.results[0].geometry.location.lng;
+      coords = {lat: lat, lng: lng}
+      // 2.1 put it on the map
+      
+    })
+     .fail(function(error){
+       console.log(error)
+     })
+  })
 
-   function initMap(){
-     // get coords for all the cities
-     getCoords(displayCities, function(){
-       var map = new google.maps.Map(document.getElementById('map'), {
-         zoom: 4,
-         mapTypeControl: false,
-         center: {lat: 38.850033, lng: -97.6500523}
-       });
+
+ }
+
 
        coordsList.forEach(function(coords, i){
          var cities = JSON.parse(localStorage.cities)
@@ -67,30 +102,7 @@ var globalInfoWindow;
      })
    }
 
-  function getCoords(displayCities, callback){
-     city = displayCities.shift()
-     $.ajax({
-       url: "https://maps.googleapis.com/maps/api/geocode/json?address="+city.cityName+"&key=AIzaSyCYUN28qqTKuwxF_I12PmuRvAQ6MqbmUDk&callback"
-     })
-     .done(function(result){
-       coords = result.results[0].geometry.location
-       lat = coords.lat
-       lng = coords.lng
-       coords = {lat: lat, lng: lng}
-       coordsList.push(coords)
-       if (displayCities.length !== 0){
-         getCoords(displayCities, callback)
-       }
-       else{
-         console.log(coordsList)
-         callback()
-       }
-     })
-     .fail(function(error){
-       console.log(error)
-     })
 
-   }
 
   function displayDateWindows(marker, map){
     var vacations = JSON.parse(localStorage.vacations)
